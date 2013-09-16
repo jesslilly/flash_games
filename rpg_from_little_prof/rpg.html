@@ -1,0 +1,176 @@
+<HTML>
+<HEAD>
+<meta http-equiv=Content-Type content="text/html;  charset=ISO-8859-1">
+<TITLE>rpg</TITLE>
+<BGSOUND id="bgMusicID" LOOP=-1 SRC="sounds/silence.mid">
+<meta name="Microsoft Border" content="lr, default">
+</HEAD>
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+
+<font face="Arial" size="2"><img border="0" src="../clear-pixel.gif" width="100"
+height="5"></font>
+        <p style="margin-top: 0; margin-bottom: 0"><font face="Arial" size="2"><a href="../index.html"><img border="0"
+        src="../sparkyland-images/smallsparkylandlogo.gif" width="100" height="54"></a></font></p>
+        <p style="margin-top: 0; margin-bottom: 0"><font face="Arial" size="2">Fun
+        and Games</font></p>
+<p><font face="Arial" size="2"><a href="../games.html">Games</a></font></p>
+<p><font face="Arial" size="2"><a href="../fun.html">Weird Stuff</a></font></p>
+<p><font size="2" face="Arial"><a href="../index.html">SparkyLand</a></font></p>
+<p><font face="Arial" size="2"><a href="../castle.html">Sparky's Castle</a></font></p>
+<p><font face="Arial" size="2"><a href="../links.html">Links</a></font></p>
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+  <table border="0" bgcolor="#ffffff" width="89">
+    <tr>
+      <td nowrap="nowrap" width="110"><input type="hidden" name="domains" value="www.sparkyland.com"><input type="text" name="q" size="14" maxlength="255" value></td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap" width="110">
+        <table>
+          <tr>
+            <td><input type="radio" name="sitesearch" value checked="checked"> <font size="-1" color="#000000">Web</font></td>
+            <td><input type="radio" name="sitesearch" value="www.sparkyland.com">
+              <font size="-1" color="#000000">SparkyLand</font></td>
+          </tr>
+        </table>
+        <input type="submit" name="sa" value="Google Search" style="font-size: 8pt">
+        <input type="hidden" name="client" value="pub-8525289492361616"> <input type="hidden" name="forid" value="1">
+        <input type="hidden" name="channel" value="7439802154"> <input type="hidden" name="ie" value="ISO-8859-1">
+        <input type="hidden" name="oe" value="ISO-8859-1"> <input type="hidden" name="safe" value="active">
+        <input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;LH:50;LW:93;L:http://www.sparkyland.com/sparkyland-images/smallsparkylandlogo.gif;S:http://;FORID:1;">
+        <input type="hidden" name="hl" value="en"></td>
+    </tr>
+  </table>
+</form>
+<!-- SiteSearch Google -->
+<p><font size="2" face="Arial">
+<SCRIPT LANGUAGE="JAVASCRIPT">
+<!--
+document.write("<a href=\"#back\" onclick=\"history.back()\"> Back</a>");
+// -->
+</SCRIPT>
+
+</font></p>
+
+</td><td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+<p style="text-indent: 0; line-height: 100%; word-spacing: 0; margin: 0">
+<br>
+<br>
+<h1 style="text-indent: 0; line-height: 100%; word-spacing: 0; margin: 0">Adventures
+in SparkyLand</h1>
+<p style="text-indent: 0; line-height: 100%; word-spacing: 0; margin: 0"><font size="1"> If you don't see the game, go to
+macromedia and get <a href="http://www.macromedia.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">flash
+player</a>.</font> <font size="1">If you lose keyboard control, click the game
+with the mouse.  If you use Firefox or Safari on a Mac, you need <a href="http://www.apple.com/quicktime/download/">quicktime</a> and <a href="http://www.macromedia.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">flash player version 8</a> to hear the music.  The best way to hear the music is to use internet explorer on a PC.</font></p>
+<!----------begin music mahem------------------------------------------------->
+<!--
+2/20/2006
+put javascript right in adventure.html instead of in music.js.  
+Mac is now calling myFlash_DoFSCommand, but not calling the function in music.js
+so I made it all inline.
+-------------------------------------------------------------------------------
+2/20/2006
+Here's the story as I know it.
+EMBED works on IE and mozilla.  EMBED is finicky and you need a close tag.
+BGsound works really well on ie, so I stick with it.
+mozilla has no native midi support, so we have to use quick time.
+The quicktime methods are Play() and Stop() (Capitalized)
+Now, the FSCommand is used to go from flash to js.
+FSCommand appears to work well on flash PC versions, but only works on Mac for flash player version 8.
+you use fscommand in flash which called name/id_DoFSCommand in adventure.html.
+For IE, the vbscript called the javascript name/id_DoFSCommand.
+name/id_DoFSCommand calls flashCommand here in music.js.
+-->
+<!-- SCRIPT language="JAVASCRIPT" src="com/sparkyland/adventure/music.js"></SCRIPT -->
+<SCRIPT LANGUAGE=JavaScript>
+<!--
+var InternetExplorer = navigator.appName.indexOf("Microsoft") != -1;
+var ver=parseInt(navigator.appVersion);
+var ie4=(ver>3  && navigator.appName!="Netscape")?1:0;
+var ns4=(ver>3  && navigator.appName=="Netscape")?1:0;
+var ns3=(ver==3 && navigator.appName=="Netscape")?1:0;
+var currentSong = "silence.mid";
+function parseFlashCommand( command, args )
+{
+	//alert( "parseFlashCommand: " + command + " " + args + " " + currentSong );
+	if ( args != currentSong ) // && ( command == "loop" ) I don't care what the command is.  It's always 'play music'.
+	{
+		playMusic( args );
+	}
+}
+function playMusic( soundFile )
+{
+	//alert("playMusic: " + navigator.appName + " " + navigator.appVersion );
+	/*alert( " currentSong " + currentSong + "\n" +
+		" soundFile " + soundFile + "\n" +
+		" ie4 " + ie4 + "\n" +
+		" ns4 " + ns4 + "\n" +
+		" ns3 " + ns3 + "\n" +
+		" navigator.javaEnabled() " + navigator.javaEnabled() + "\n" +
+		" navigator.mimeTypes['audio/x-midi'] " + navigator.mimeTypes['audio/x-midi'] + "\n" +
+		" currentSong " + currentSong + "\n"
+		);*/
+	if (ie4)
+	{
+		//alert("ie4");
+		document.all['bgMusicID'].src =  "sounds/" + soundFile + ".mid";
+	}
+	if (ns4 || ns3)
+	{
+		//alert ( "playMusic:: ns " );
+		if (currentSong != "silence.mid" )
+		{
+			//alert("document[currentSong].Stop();");
+			document[currentSong].Stop();
+		}
+		document[soundFile].Play();
+		//alert("document[soundFile].Play();");
+	}
+	currentSong = soundFile;
+}
+function myFlash_DoFSCommand(command, args)
+{
+  var myFlashObj = InternetExplorer ? myFlash : document.myFlash;
+  //alert ("rpg.html: " + args);
+  parseFlashCommand( command, args );  
+}
+if (navigator.appName && navigator.appName.indexOf("Microsoft") != -1 && 
+  navigator.userAgent.indexOf("Windows") != -1 && navigator.userAgent.indexOf("Windows 3.1") == -1) {
+  document.write('<SCRIPT LANGUAGE=VBScript\> \n');
+  document.write('on error resume next \n');
+  document.write('Sub myFlash_FSCommand(ByVal command, ByVal args)\n');
+  document.write(' call myFlash_DoFSCommand(command, args)\n');
+  document.write('end sub\n');
+  document.write('</SCRIPT\> \n');
+} 
+//-->
+</SCRIPT>
+<!----------end music mahem------------------------------------------------->
+<p><OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+ codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"
+ WIDTH="600" HEIGHT="400" id="myFlash" ALIGN="">
+ <PARAM NAME=movie VALUE="rpg_intro.swf"> <PARAM NAME=quality VALUE=high> <PARAM NAME=bgcolor VALUE=#FFFFFF> <EMBED src="rpg_intro.swf" quality=high bgcolor=#FFFFFF  WIDTH="600" HEIGHT="400" NAME="myFlash" ALIGN="" swLiveConnect="true"
+ TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
+</OBJECT>
+</p>
+<!--msnavigation--></td><td valign="top" width="24"></td><td valign="top" width="1%">
+
+<img border="0" src="../clear-pixel.gif" width="160" height="20"><script type="text/javascript"><!--
+google_ad_client = "pub-8525289492361616";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "text";
+google_ad_channel ="7919414155";
+google_color_border = "336699";
+google_color_link = "0000FF";
+google_color_bg = "FFFFFF";
+google_color_text = "000000";
+google_color_url = "008000";
+//--></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<p></p>
+
+</td></tr><!--msnavigation--></table></BODY>
+</HTML>
